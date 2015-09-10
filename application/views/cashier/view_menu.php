@@ -10,6 +10,7 @@
 				var results=JSON.parse(result);
 
 				for(var i=0; i<results.length; i++){
+					console.log(results[i]);
 					var string="<div class='itemcontainer'> \
 									<div class='itemarray' name='item["+i+"]'><div class='itemdetails'> \
 										<span class='itemname'>"+(results[i].itemname).toUpperCase()+"</span> \
@@ -17,7 +18,9 @@
 									</div></div> \
 									<div class='changecount'> \
 										<span class='xsign'> X </span> \
-										<input type='number' class='count' name='"+results[i].itemname+"' value='0' min='0' max='999'></input> \
+										<input type='number' class='count' name='"+results[i].itemname+"[0]' value='0' min='0' max='999'></input> \
+										<input type='hidden' class='price' name='"+results[i].itemname+"[1]' value="+results[i].itemprice+"> \
+										<input type='hidden' class='id' name='"+results[i].itemname+"[2]' value="+results[i].itemid+"> \
 									</div> \
 								</div>";
 					$('#menulist').append(string);

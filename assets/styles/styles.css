@@ -71,3 +71,7 @@
 	display: block;
 	font-weight: bold;
 }
+
+.transactioncontainer{
+	border: 1px solid black;
+}

@@ -24,11 +24,18 @@ class Menu extends CI_Controller{
 	}
 
 	public function order(){
+		$list=$this->input->post();
 		$menuarray=array_keys($this->input->post());
+		$order=array();
 		
 		foreach($menuarray as $item){
-			echo str_replace("_", " ", $item);
-			echo "<br>";
+			if(intval($list[$item][0])>0){
+				$order[str_replace("_", " ", $item)]=array($list[$item][0], $list[$item][1], $list[$item][2]);
+				// first: number of orders 
+				// second: price
+				// third: id
+			}
 		}
+		$this->model_menu->new_transaction($order);
 	}
 }

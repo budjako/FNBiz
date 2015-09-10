@@ -4,7 +4,7 @@ class Transaction extends CI_Controller{
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('cashier/model_menu');
+		$this->load->model('cashier/model_transaction');
 	}
 
 	public function index(){
@@ -16,6 +16,11 @@ class Transaction extends CI_Controller{
 
 		// session_destroy();
 		// redirect('home', 'refresh');
+	}
+
+	public function get_transactions(){
+		$transactions=$this->model_transaction->get_transactions();
+		echo json_encode($transactions);
 	}
 
 }
