@@ -8,7 +8,7 @@
 		public function get_menu(){
 			$sql="SELECT itemid, itemname, itemcategory, itemprice from item order by itemname";
 			$sql=$this->db->query($sql);
-			return $sql->result_array();
+			return $sql->result_array() ;
 		}
 
 		public function new_transaction($order){
