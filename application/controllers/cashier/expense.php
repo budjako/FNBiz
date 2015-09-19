@@ -19,12 +19,19 @@ class Expense extends CI_Controller{
 	}
 
 	public function get_expenses(){
-		$expenses=$this->model_expense->get_expenses();
+		$expenses=$this->model_expense->get_expenses_today();
 		echo json_encode($expenses);
 	}
 
-	public function add_expense(){
-		$expense=$this->input->post();
-		$this->model_expense->add_expense($expense);
+	public function add_expense($string){
+		// $expense=$this->input->post();
+		// var_dump($expense);
+		// var_dump($string);
+		$string=explode("_", $string);
+		$name=$string[0];
+		for($i=1; $i<count($string)-1; $i++){
+			$name.=" ".$string[$i];	
+		}
+		$this->model_expense->add_expense($name, $string[count($string)-1]);
 	}
 }

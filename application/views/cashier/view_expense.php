@@ -9,6 +9,7 @@
 			success: function(result){
 				var results=JSON.parse(result);
 				totalexpense=0;
+				$('#expenselist').html("");
 				for(var i=0; i<results.length; i++){
 					console.log(results[i]);
 					var string="<div class='expenseitem'> \
@@ -28,25 +29,42 @@
 			}
 		});
 	}
+
+	$(document).ready(function(){
+		$(document).on("click", "#expensesubmit", function(event){			// function to be executed when a company is approved
+			event.preventDefault();
+			console.log("validateexpense"+validateexpense());
+			if(!validateexpense()) return;
+
+			var name = $("#expensename").val();
+			var amount = $("#expenseamount").val();
+			name=name.replace(" ", "_");
+			
+			$.ajax({
+				url: base_url+"index.php/cashier/expense/add_expense/"+name+"_"+amount,
+				type: 'POST',
+
+				success: function(result){								// if approving was successfully updated on the server, update values 
+					get_expenses();
+				},
+				error: function(err){
+					$('#expenselist').html(err);				// on error, state error
+				}
+			});
+		})
+	})
 </script>
 
 <div id="content">
 	<div id="contentheader"><h3>Expenses</h3></div>
 	<div id="expensescontainer">
 		<div id="addexpense">
-			<?php
-				echo validation_errors();						// show errors on search values
-				$attrib=array('name' => 'order', 'id' => 'addexpense', 'class' => 'form-horizontal');
-				echo form_open('cashier/expense/add_expense', $attrib);			
-				if(isset($msg)){
-					echo $msg;
-				}
-			?>
+			<form name="order" id="addexpense" class="form-horizontal">
 				<label>Expense Name</label>
-				<input type="text" name="expensename"></input>
+				<input type="text" id="expensename" name="expensename"></input>
 				<label>Amount</label>
-				<input type="number" name="amount" step="any"></input> 
-				<input class='buttonlogin col-sm-offset-2 btn btn-default' type='submit' name='submit' onclick='return validateexpense()' value='Add Expense' />
+				<input type="number" id="expenseamount" name="amount" step="any"></input> 
+				<input class='buttonlogin col-sm-offset-2 btn btn-default' type='submit' id="expensesubmit" name='submit' value='Add Expense' />
 			</form>
 		</div>
 		<div id="expenselist"></div>

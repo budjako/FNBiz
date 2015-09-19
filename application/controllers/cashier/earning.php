@@ -4,7 +4,7 @@ class Earning extends CI_Controller{
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('cashier/model_menu');
+		$this->load->model('cashier/model_earning');
 	}
 
 	public function index(){
@@ -16,6 +16,11 @@ class Earning extends CI_Controller{
 
 		// session_destroy();
 		// redirect('home', 'refresh');
+	}
+
+	public function get_earnings(){
+		// var_dump(json_encode($this->model_earning->get_earnings_today()));
+		echo json_encode($this->model_earning->get_earnings_today());
 	}
 
 }

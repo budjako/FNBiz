@@ -19,7 +19,7 @@ class Transaction extends CI_Controller{
 	}
 
 	public function get_transactions(){
-		$transactions=$this->model_transaction->get_transactions();
+		$transactions=$this->model_transaction->get_transactions_today();
 		echo json_encode($transactions);
 	}
 

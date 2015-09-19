@@ -1,3 +1,5 @@
+// spaces and enye!
+
 function validatelogin(){
 	if(validateloginusername() && validateloginpassword()) return true;
 	return false;
@@ -122,5 +124,18 @@ function validateorder(){
 	
 
 	if(hasItem==0) return false;
+	return true;
+}
+
+function validateexpense(){
+	if(validateexpensename() && validateexpenseamount()) return true;
+	return false;
+}
+
+function validateexpensename(){
+	return true;
+}
+
+function validateexpenseamount(){
 	return true;
 }

@@ -18,8 +18,15 @@
 			return $sql->result_array();
 		}
 
-		public function add_expense($expense){
-			$sql="INSERT into expense (expensename, amount) values ('".$expense['expensename']."', ".$expense['amount'].")";
+		public function get_expense_amount_today(){
+			$sql="SELECT sum(amount) from expense where DATE(`datets`)=CURDATE()";
+			$sql=$this->db->query($sql);
+			if(is_null($sql->result_array()[0]['sum(amount)'])) return 0;
+			return $sql->result_array()[0]['sum(amount)'];
+		}
+
+		public function add_expense($name, $amount){
+			$sql="INSERT into expense (expensename, amount) values ('".$name."', ".$amount.")";
 			$sql=$this->db->query($sql);
 		}
 	}

@@ -6,6 +6,12 @@
 		}
 
 		public function get_menu(){
+			$sql="SELECT itemid, itemname, itemcategory, itemprice from item where available=1 order by itemname";
+			$sql=$this->db->query($sql);
+			return $sql->result_array() ;
+		}
+
+		public function get_menu_full(){
 			$sql="SELECT itemid, itemname, itemcategory, itemprice from item order by itemname";
 			$sql=$this->db->query($sql);
 			return $sql->result_array() ;
