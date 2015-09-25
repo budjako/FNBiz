@@ -10,8 +10,8 @@ class Menu extends CI_Controller{
 	public function index(){
 		$data['titlepage'] = "FNBiz Menu"; 					//title page  
 		$this->load->view("header", $data); 					//displays the header
-		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
-		$this->load->view("cashier/view_menu", $data); 				//displays the home page
+		$this->load->view("admin/navigation");
+		$this->load->view("admin/view_menu", $data); 				//displays the home page
 		$this->load->view("footer"); 
 
 		// session_destroy();
@@ -23,6 +23,11 @@ class Menu extends CI_Controller{
 		echo json_encode($menu);
 	}
 
+	public function get_menu_full(){
+		$menu=$this->model_menu->get_menu_full();
+		echo json_encode($menu);
+	}
+
 	public function order($orderString){
 		$order=explode("_", $orderString);
 		$orderList=array();
@@ -30,5 +35,10 @@ class Menu extends CI_Controller{
 			array_push($orderList, array($order[$i], $order[$i+1], $order[$i+2]));
 		}
 		$this->model_menu->new_transaction($orderList);
+	}
+
+	public function availability($item){
+		$item=explode("_", $item);
+		$this->model_menu->availability($item[0], $item[1]);
 	}
 }

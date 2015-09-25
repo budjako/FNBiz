@@ -1,6 +1,7 @@
 #content{
 	padding-top: 50px;
 	margin-left: 15px; 
+	min-height: 690px;
 }
 
 #rightitem{
@@ -14,10 +15,6 @@
 	width:40%;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.buttonlogin{
-	margin-left: 95px;
 }
 
 #heading{
@@ -47,6 +44,16 @@
 	height: 100px;
 	border: 1px solid #ccc;
 	margin-left: 15px;
+	position: relative;
+}
+
+.itemdetails{
+	font-weight: bold;
+	padding-top:20%;
+}
+
+#menusubmit{
+	clear: both;
 }
 
 .changecount{
@@ -62,16 +69,19 @@
 	margin-right: 5px;
 }
 
-.itemdetails{
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.itemname{
-	display: block;
-	font-weight: bold;
-}
-
 .transactioncontainer{
 	border: 1px solid black;
+}
+
+footer {
+	border-top: 1px solid #e7e7e7;
+	background: #f8f8f8;
+	text-align: right;
+	height:30px;
+	margin-top: 15px;
+}
+
+footer div{
+	margin-top: 5px;
+	padding-right: 10px;
 }

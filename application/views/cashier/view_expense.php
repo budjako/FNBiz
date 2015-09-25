@@ -11,7 +11,6 @@
 				totalexpense=0;
 				$('#expenselist').html("");
 				for(var i=0; i<results.length; i++){
-					console.log(results[i]);
 					var string="<div class='expenseitem'> \
 									<div class='expensedetails'> \
 										<span class='expensename'>"+(results[i].expensename)+"</span> \
@@ -22,7 +21,6 @@
 					$('#expenselist').append(string);
 					totalexpense+=parseInt(results[i].amount);
 				}
-				console.log(totalexpense);
 			},
 			error: function(err){
 				$('#expenselist').html(err);
@@ -33,7 +31,7 @@
 	$(document).ready(function(){
 		$(document).on("click", "#expensesubmit", function(event){			// function to be executed when a company is approved
 			event.preventDefault();
-			console.log("validateexpense"+validateexpense());
+			// console.log("validateexpense"+validateexpense());
 			if(!validateexpense()) return;
 
 			var name = $("#expensename").val();

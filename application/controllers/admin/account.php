@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Menu extends CI_Controller{
+class Account extends CI_Controller{
 
 	public function __construct() {
 		parent::__construct();
@@ -8,10 +8,10 @@ class Menu extends CI_Controller{
 	}
 
 	public function index(){
-		$data['titlepage'] = "FNBiz Menu"; 					//title page  
+		$data['titlepage'] = "FNBiz Accounts"; 					//title page  
 		$this->load->view("header", $data); 					//displays the header
-		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
-		$this->load->view("cashier/view_menu", $data); 				//displays the home page
+		$this->load->view("admin/navigation");
+		$this->load->view("admin/view_menu", $data); 				//displays the home page
 		$this->load->view("footer"); 
 
 		// session_destroy();

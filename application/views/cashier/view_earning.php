@@ -7,8 +7,9 @@
 			type: 'POST',
 
 			success: function(result){
+				// $('#earnings').html(result);
 				var results=JSON.parse(result);
-				console.log(results);
+				// console.log(results);
 				$('#earnings').append(results);
 			},
 			error: function(err){

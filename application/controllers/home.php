@@ -16,7 +16,7 @@ class Home extends CI_Controller{
 
 	public function login(){
 		if($this->session->userdata('logged_in') == TRUE){
-			if($this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
+			if($this->session->userdata('logged_in')['is_admin']) redirect('admin/menu', 'refresh');
 			redirect('cashier/menu', 'refresh');
 		}
 		$data['titlepage'] = "FNBiz Log in"; //title page 
@@ -42,7 +42,7 @@ class Home extends CI_Controller{
 				$info['username'] = $this->input->post('username');
 				$info['is_admin'] = $this->model_user->is_admin($info['username']);
 				$this->session->set_userdata('logged_in', $info);
-				// var_dump($this->session->userdata());
+				if($this->session->userdata('logged_in')['is_admin']) redirect('admin/menu', 'refresh');
 				redirect('cashier/menu', 'refresh');
 
 			}

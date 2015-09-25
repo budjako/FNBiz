@@ -10,20 +10,18 @@
 				var results=JSON.parse(result);
 				var transactionid=0, total=0, sales=0;
 				for(var i=0; i<results.length; i++){
-					console.log(results[i]);
-
 					transactionid=results[i].transaction_id;
 					var string="<div class='transactioncontainer'> \
 									<div class='transactionarray' name='transaction["+i+"]'><div class='transactiondetails'>";
 					while(true){
 						total+=results[i].count*results[i].itemprice;
-						string+="<span class='itemname'>"+(results[i].itemname).toUpperCase()+"</span> \
+						string+="<span class='itemname'>"+(results[i].itemname)+"</span> \
 								<span class='itemprice'> Php "+(results[i].itemprice)+"</span> \
 								<span class='count'>"+results[i].count+"</span>";
 						if(i+1>=results.length || results[i+1].transaction_id != transactionid) break;
 						i++;
 					}
-					string+="<span>Total:"+total+"</span></div></div></div>";
+					string+="<span clas='total'>Total:"+total+"</span></div></div></div>";
 					sales+=total;
 					total=0;
 					$('#transactions').append(string);

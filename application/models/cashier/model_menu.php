@@ -12,7 +12,7 @@
 		}
 
 		public function get_menu_full(){
-			$sql="SELECT itemid, itemname, itemcategory, itemprice from item order by itemname";
+			$sql="SELECT itemid, itemname, itemcategory, itemprice, available from item order by itemname";
 			$sql=$this->db->query($sql);
 			return $sql->result_array() ;
 		}
@@ -20,7 +20,10 @@
 		public function new_transaction($order){
 			$total=0;
 			foreach ($order as $item) {
-				$total+=$item[0]*$item[1];
+				// $item[0] itemid
+				// $item[1] count
+				// $item[2] price
+				$total+=$item[1]*$item[2];
 			}
 
 			$sql="INSERT INTO transaction (total) values (".$total.")";
@@ -35,10 +38,15 @@
 			foreach ($order as $item) {
 				if($i==0) $i=1;
 				else $sql.=",";
-				$sql.="(".$id.", ".$item[2].", ".$item[0].")";
+				$sql.="(".$id.", ".$item[0].", ".$item[1].")";
 			}
 			$sql=$this->db->query($sql);
 
+		}
+
+		public function availability($itemid, $toggle){
+			$sql="UPDATE `fnbiz`.`item` SET `available` = ".$toggle." WHERE `item`.`itemid` = ".$itemid.";";
+			$this->db->query($sql);
 		}
 
 	}

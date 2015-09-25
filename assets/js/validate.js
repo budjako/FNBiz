@@ -113,14 +113,29 @@ function validatelastname(){
 }
 
 function validateorder(){
-	ctr=document.getElementsByClassName("count").length;
-	console.log(ctr);
+	ctr=document.getElementsByClassName("itemcount").length;
+	// console.log(ctr);
 
 	hasItem=0;
 
 	for(i=0; i<ctr; i++)
 		// console.log(document.getElementsByClassName("count")[i].value);
-		if(document.getElementsByClassName("count")[i].value > 0) hasItem++;
+		if(document.getElementsByClassName("itemcount")[i].value > 0) hasItem++;
+	
+
+	if(hasItem==0) return false;
+	return true;
+}
+
+function validateorder(){
+	ctr=document.getElementsByClassName("itemcount").length;
+	// console.log(ctr);
+
+	hasItem=0;
+
+	for(i=0; i<ctr; i++)
+		// console.log(document.getElementsByClassName("count")[i].value);
+		if(document.getElementsByClassName("itemcount")[i].value > 0) hasItem++;
 	
 
 	if(hasItem==0) return false;
