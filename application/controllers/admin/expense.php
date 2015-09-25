@@ -16,4 +16,9 @@ class Expense extends CI_Controller{
 
 	}
 
+	public function get_all_expenses(){
+		$expenses=$this->model_expense->get_expenses();
+		echo json_encode($expenses);
+	}
+
 }
