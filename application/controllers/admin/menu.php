@@ -28,6 +28,11 @@ class Menu extends CI_Controller{
 		echo json_encode($menu);
 	}
 
+	public function get_categories(){
+		$categories=$this->model_menu->get_categories();
+		echo json_encode($categories);
+	}
+
 	public function order($orderString){
 		$order=explode("_", $orderString);
 		$orderList=array();

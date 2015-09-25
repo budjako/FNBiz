@@ -49,6 +49,12 @@
 			$this->db->query($sql);
 		}
 
+		public function get_categories(){
+			$sql="SELECT categoryname from category";
+			$sql=$this->db->query($sql);
+			return $sql->result_array();
+		}
+
 	}
 
 ?>
