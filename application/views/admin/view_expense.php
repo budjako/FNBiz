@@ -64,6 +64,7 @@
 
 				success: function(result){								// if approving was successfully updated on the server, update values 
 					get_expenses();
+					get_all_expenses();
 				}
 			});
 		})
