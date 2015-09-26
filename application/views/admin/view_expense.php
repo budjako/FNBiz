@@ -83,7 +83,7 @@
 			</form>
 		</div>
 		<h4>Today's Expenses</h4>
-		<table class=" table table-condensed expensetable">
+		<table class=" table table-hover table-condensed expensetable">
 			<thead>
 				<tr>
 					<th>Expense Name</th>
@@ -95,7 +95,7 @@
 		</table>
 		<h4 id="total"></h4>
 		<h4>All Expenses</h4>
-		<table class=" table table-condensed expensetablefull">
+		<table class=" table table-hover table-condensed expensetablefull">
 			<thead>
 				<tr>
 					<th>Expense Name</th>

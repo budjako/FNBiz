@@ -21,7 +21,7 @@
 						if(i+1>=results.length || results[i+1].transaction_id != transactionid) break;
 						i++;
 					}
-					string+="<span clas='total'>Total:"+total+"</span></div></div></div>";
+					string+="<span class='total'>Total:"+total+"</span></div></div></div>";
 					sales+=total;
 					total=0;
 					$('#transactions').append(string);

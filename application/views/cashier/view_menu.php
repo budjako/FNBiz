@@ -10,7 +10,7 @@
 				var results=JSON.parse(result);
 
 				for(var i=0; i<results.length; i++){
-					var string="<div class='itemcontainer'> \
+					var string="<div class='col-xs-6 col-sm-3 itemcontainer'> \
 									<div class='itemarray' name='item["+i+"]'><div class='itemdetails'> \
 										<center><span class='itemname'>"+(results[i].itemname).toUpperCase()+"</span></center>\
 										<center><span class='itemprice'> Php "+(results[i].itemprice)+"</span></center> \

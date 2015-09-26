@@ -16,4 +16,8 @@ class Transaction extends CI_Controller{
 
 	}
 
+	public function get_all_transactions(){
+		$transactions=$this->model_transaction->get_transactions();
+		echo json_encode($transactions);
+	}
 }

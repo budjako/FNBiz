@@ -7,7 +7,7 @@
 
 
 		public function get_expenses(){
-			$sql="SELECT expensename, amount, datets from expense";
+			$sql="SELECT expensename, amount, datets from expense order by datets desc";
 			$sql=$this->db->query($sql);
 			return $sql->result_array();
 		}

@@ -13,15 +13,10 @@ class Transaction extends CI_Controller{
 		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
 		$this->load->view("cashier/view_transaction", $data); 				//displays the home page
 		$this->load->view("footer"); 
-
-		// session_destroy();
-		// redirect('home', 'refresh');
 	}
 
 	public function get_transactions(){
 		$transactions=$this->model_transaction->get_transactions_today();
-		// var_dump($transactions);
-		// return $transactions;
 		echo json_encode($transactions);
 	}
 
