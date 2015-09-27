@@ -11,6 +11,10 @@
 			return $sql->result_array();
 		}
 
+		public function add_admin($username){
+			$sql="UPDATE user SET admin=1 where username='".$username."'";
+			$this->db->query($sql);
+		}
 	}
 
 ?>

@@ -8,16 +8,14 @@
 
 			success: function(result){
 				var results=JSON.parse(result);
-				console.log(results);
 				for(i=0; i<results.length; i++){
-					string="<tr><td>"+results[i].username+"</td>";
+					string="<tr id='"+results[i].username+"'><td>"+results[i].username+"</td>";
 					string+="<td>"+results[i].firstname+"</td>";
 					string+="<td>"+results[i].lastname+"</td>";
 					if(results[i].admin==1)
-						string+="<td><input type='button' class='button co-admin' value='Add as co-admin'></td></tr>";
-						// string+="<td></td></tr>";
+						string+="<td></td></tr>";
 					else
-						string+="<td><input type='button' class='button' value='Add as co-admin'></td></tr>";
+						string+="<td><input type='button' class='button co-admin' value='Add as co-admin'></td></tr>";
 					$("#userlist").append(string);
 				}
 			},
@@ -28,7 +26,21 @@
 
 		$(document).ready(function(){
 			$(document).on("click", ".co-admin", function(event){
-				console.log(this.parent);
+				source=$(this);
+				console.log(source);
+				// console.log($(this).parent().parent().attr("id"));			// id of table row
+				username=$(this).parent().parent().attr("id");
+
+				$.ajax({
+					url: base_url+"index.php/admin/account/add_admin/"+username,
+					type: 'POST',
+					data:{username:username},
+
+					success: function(data){
+						console.log($(this));
+						source.remove();
+					}
+				});
 			})
 		})
 	}

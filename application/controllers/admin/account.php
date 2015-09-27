@@ -25,4 +25,9 @@ class Account extends CI_Controller{
 		echo json_encode($accounts);
 	}
 
+	public function add_admin($username){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
+		$this->model_account->add_admin($username);
+	}
 }
