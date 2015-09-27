@@ -8,6 +8,8 @@ class Earning extends CI_Controller{
 	}
 
 	public function index(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$data['titlepage'] = "FNBiz Earnings"; 							//title page  
 		$this->load->view("header", $data); 							//displays the header
 		$this->load->view("admin/navigation");

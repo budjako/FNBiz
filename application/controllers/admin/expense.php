@@ -8,6 +8,8 @@ class Expense extends CI_Controller{
 	}
 
 	public function index(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$data['titlepage'] = "FNBiz Expenses"; 							//title page  
 		$this->load->view("header", $data); 							//displays the header
 		$this->load->view("admin/navigation");
@@ -17,6 +19,8 @@ class Expense extends CI_Controller{
 	}
 
 	public function get_all_expenses(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$expenses=$this->model_expense->get_expenses();
 		echo json_encode($expenses);
 	}

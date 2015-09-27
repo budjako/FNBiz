@@ -8,6 +8,8 @@ class Menu extends CI_Controller{
 	}
 
 	public function index(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$data['titlepage'] = "FNBiz Menu"; 					//title page  
 		$this->load->view("header", $data); 					//displays the header
 		$this->load->view("admin/navigation");
@@ -19,21 +21,29 @@ class Menu extends CI_Controller{
 	}
 
 	public function get_menu(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$menu=$this->model_menu->get_menu();
 		echo json_encode($menu);
 	}
 
 	public function get_menu_full(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$menu=$this->model_menu->get_menu_full();
 		echo json_encode($menu);
 	}
 
 	public function get_categories(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$categories=$this->model_menu->get_categories();
 		echo json_encode($categories);
 	}
 
 	public function order($orderString){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$order=explode("_", $orderString);
 		$orderList=array();
 		for($i=0; ($i+2)<count($order); $i+=3){
@@ -43,6 +53,8 @@ class Menu extends CI_Controller{
 	}
 
 	public function availability($item){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$item=explode("_", $item);
 		$this->model_menu->availability($item[0], $item[1]);
 	}

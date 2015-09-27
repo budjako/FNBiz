@@ -8,22 +8,22 @@ class Menu extends CI_Controller{
 	}
 
 	public function index(){
-		$data['titlepage'] = "FNBiz Menu"; 					//title page  
-		$this->load->view("header", $data); 					//displays the header
-		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
-		$this->load->view("cashier/view_menu", $data); 				//displays the home page
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
+		$data['titlepage'] = "FNBiz Menu"; 								//title page  
+		$this->load->view("header", $data); 							//displays the header
+		$this->load->view("cashier/navigation");
+		$this->load->view("cashier/view_menu", $data); 					//displays the home page
 		$this->load->view("footer"); 
-
-		// session_destroy();
-		// redirect('home', 'refresh');
 	}
 
 	public function get_menu(){
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
 		$menu=$this->model_menu->get_menu();
 		echo json_encode($menu);
 	}
 
 	public function order($orderString){
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
 		$order=explode("_", $orderString);
 		$orderList=array();
 		for($i=0; ($i+2)<count($order); $i+=3){

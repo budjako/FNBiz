@@ -8,14 +8,16 @@ class Transaction extends CI_Controller{
 	}
 
 	public function index(){
-		$data['titlepage'] = "FNBiz Transaction"; 					//title page  
-		$this->load->view("header", $data); 					//displays the header
-		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
+		$data['titlepage'] = "FNBiz Transaction"; 							//title page  
+		$this->load->view("header", $data); 								//displays the header
+		$this->load->view("cashier/navigation");
 		$this->load->view("cashier/view_transaction", $data); 				//displays the home page
 		$this->load->view("footer"); 
 	}
 
 	public function get_transactions(){
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
 		$transactions=$this->model_transaction->get_transactions_today();
 		echo json_encode($transactions);
 	}

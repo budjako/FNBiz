@@ -8,18 +8,16 @@ class Earning extends CI_Controller{
 	}
 
 	public function index(){
-		$data['titlepage'] = "FNBiz Earning"; 					//title page  
-		$this->load->view("header", $data); 					//displays the header
-		/*if($this->session->userdata('logged_in')['is_admin']) */$this->load->view("cashier/navigation");
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
+		$data['titlepage'] = "FNBiz Earning"; 							//title page  
+		$this->load->view("header", $data); 							//displays the header
+		$this->load->view("cashier/navigation");
 		$this->load->view("cashier/view_earning", $data); 				//displays the home page
 		$this->load->view("footer"); 
-
-		// session_destroy();
-		// redirect('home', 'refresh');
 	}
 
 	public function get_earnings(){
-		// var_dump(json_encode($this->model_earning->get_earnings_today()));
+		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
 		echo json_encode($this->model_earning->get_earnings_today());
 	}
 

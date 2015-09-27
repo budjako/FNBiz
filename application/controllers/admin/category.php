@@ -8,6 +8,8 @@ class Category extends CI_Controller{
 	}
 
 	public function index(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$data['titlepage'] = "FNBiz Category"; 					//title page  
 		$this->load->view("header", $data); 					//displays the header
 		$this->load->view("admin/navigation");
@@ -16,6 +18,8 @@ class Category extends CI_Controller{
 	}
 
 	public function get_categories(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
 		$categories=$this->model_category->get_categories();
 		echo json_encode($categories);
 	}

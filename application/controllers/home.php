@@ -8,6 +8,10 @@ class Home extends CI_Controller{
 	}
 
 	public function index($active=FALSE){
+		if($this->session->userdata('logged_in')){
+			if($this->session->userdata('logged_in')['is_admin']) redirect('admin/menu', 'refresh');
+			redirect('cashier/menu', 'refresh');
+		}
 		$data['titlepage'] = "FNBiz Login"; 					//title page  
 		$this->load->view("header", $data); 					//displays the header
 		$this->load->view("view_login", $data); 				//displays the home page
@@ -15,7 +19,7 @@ class Home extends CI_Controller{
 	}
 
 	public function login(){
-		if($this->session->userdata('logged_in') == TRUE){
+		if($this->session->userdata('logged_in')){
 			if($this->session->userdata('logged_in')['is_admin']) redirect('admin/menu', 'refresh');
 			redirect('cashier/menu', 'refresh');
 		}
@@ -30,7 +34,7 @@ class Home extends CI_Controller{
 		$this->form_validation->set_message('password', "Password is required.");
 
 		$login;
-		if ($this->form_validation->run() === FALSE){						// there are some errors in the values supplied
+		if (! $this->form_validation->run()){						// there are some errors in the values supplied
 			$login['msg'] = validation_errors();							// show page again and show what are the errors
 			$login['titlepage'] = "FNBiz Login";
 			$this->load->view("header", $login);
@@ -80,7 +84,7 @@ class Home extends CI_Controller{
 		$this->form_validation->set_message('lastname', "Last name is required.");
 
 		$signup;
-		if ($this->form_validation->run() === FALSE){						// there are some errors in the values supplied
+		if (! $this->form_validation->run()){						// there are some errors in the values supplied
 			$signup['msg'] = validation_errors();							// show page again and show what are the errors
 			$this->load->view("header", $signup);
 			$this->load->view("view_signup", $signup); 
