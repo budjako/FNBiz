@@ -35,7 +35,7 @@
 									i++;
 								}
 					
-								string+="</table><span class='transtotal'>Transaction Total: Php "+results[i].total+"</span> \
+								string+="</table><span class='bold'>Transaction Total: Php "+results[i].total+"</span> \
 							</div> \
 						</div> \
 					</div>";

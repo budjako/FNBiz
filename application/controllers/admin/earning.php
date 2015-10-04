@@ -18,4 +18,14 @@ class Earning extends CI_Controller{
 
 	}
 
+	public function get_earnings_info(){
+		// sales
+		$info=array();
+		$info['sales']=$this->model_transaction->get_sales();
+		// expenses
+		$info['expenses']=$this->model_expense->get_expense_amount();
+		// earning
+		$info['earning']=$info['sales']-$info['expenses'];
+		echo json_encode($info);
+	}
 }

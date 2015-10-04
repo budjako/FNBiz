@@ -24,6 +24,14 @@
 			if(is_null($sql->result_array()[0]['sum(total)'])) return 0;
 			return $sql->result_array()[0]['sum(total)'];
 		}
+
+
+		public function get_sales(){
+			$sql="SELECT sum(total) from transaction";
+			$sql=$this->db->query($sql);
+			if(is_null($sql->result_array()[0]['sum(total)'])) return 0;
+			return $sql->result_array()[0]['sum(total)'];
+		}
 		
 	}
 

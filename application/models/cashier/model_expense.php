@@ -18,6 +18,13 @@
 			return $sql->result_array();
 		}
 
+		public function get_expense_amount(){
+			$sql="SELECT sum(amount) from expense";
+			$sql=$this->db->query($sql);
+			if(is_null($sql->result_array()[0]['sum(amount)'])) return 0;
+			return $sql->result_array()[0]['sum(amount)'];
+		}
+
 		public function get_expense_amount_today(){
 			$sql="SELECT sum(amount) from expense where DATE(`datets`)=CURDATE()";
 			$sql=$this->db->query($sql);

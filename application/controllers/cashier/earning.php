@@ -5,6 +5,8 @@ class Earning extends CI_Controller{
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('cashier/model_earning');
+		$this->load->model('cashier/model_transaction');
+		$this->load->model('cashier/model_expense');
 	}
 
 	public function index(){
@@ -16,9 +18,21 @@ class Earning extends CI_Controller{
 		$this->load->view("footer"); 
 	}
 
-	public function get_earnings(){
+	public function get_earnings_today(){
 		if(!$this->session->userdata('logged_in')) redirect('home', 'refresh');
 		echo json_encode($this->model_earning->get_earnings_today());
 	}
+
+	public function get_earnings_today_info(){
+		$info=array();
+		// sales
+		$info['sales']=$this->model_transaction->get_sales_today();
+		// expenses
+		$info['expenses']=$this->model_expense->get_expense_amount_today();
+		// earning
+		$info['earning']=$info['sales']-$info['expenses'];
+		echo json_encode($info);
+	}
+
 
 }

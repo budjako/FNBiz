@@ -7,10 +7,16 @@
 			$this->load->model('cashier/model_transaction');
 		}
 
+		public function get_total_earnings(){
+			$data['expenses']=$this->model_expense->get_expense_amount();
+			$data['sales']=$this->model_transaction->get_sales();
+			echo json_encode($data);
+		}
+
 		public function get_earnings_today(){
-			$expenses=$this->model_expense->get_expense_amount_today();
-			$sales=$this->model_transaction->get_sales_today();
-			return $sales-$expenses;
+			$data['expenses']=$this->model_expense->get_expense_amount_today();
+			$data['sales']=$this->model_transaction->get_sales_today();
+			echo json_encode($data);
 		}
 	}
 
