@@ -6,13 +6,14 @@
 		}
 
 		public function get_transactions(){
-			$sql="SELECT * from itemlist INNER JOIN item ON itemlist.item_id=item.itemid order by transaction_id";
+			// $sql="SELECT DISTINCT transaction_id, total, `time` as transtime from itemlist INNER JOIN item INNER JOIN transaction ON itemlist.item_id=item.itemid and itemlist.transaction_id=transaction.transactionid order by transaction_id desc";
+			$sql="SELECT * from itemlist INNER JOIN item INNER JOIN transaction ON itemlist.item_id=item.itemid and itemlist.transaction_id=transaction.transactionid order by transaction_id desc";
 			$sql=$this->db->query($sql);
 			return $sql->result_array();
 		}
 
 		public function get_transactions_today(){
-			$sql="SELECT * from itemlist INNER JOIN item INNER JOIN transaction ON itemlist.item_id=item.itemid and itemlist.transaction_id=transaction.transactionid where DATE(`time`)=CURDATE() order by transaction_id";
+			$sql="SELECT * from itemlist INNER JOIN item INNER JOIN transaction ON itemlist.item_id=item.itemid and itemlist.transaction_id=transaction.transactionid where DATE(`time`)=CURDATE() order by transaction_id desc";
 			$sql=$this->db->query($sql);
 			return $sql->result_array();
 		}

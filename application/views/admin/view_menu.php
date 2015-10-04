@@ -24,7 +24,7 @@
 										<input type='hidden' class='itemid' value="+results[i].itemid+"></br> \
 										<input type='checkbox' class='available' id='available'";
 										if(results[i].available == 1) string+=" checked='checked'";		// available
-										string+="><label for='available'>Available</label></input> \
+										string+="><label>Available</label></input> \
 									</div> \
 								</div>";
 					$('#menulist').append(string);
@@ -43,7 +43,6 @@
 			type:'POST',
 
 			success: function(result){
-				console.log(result);
 				var results=JSON.parse(result);
 				for(var i=0; i<results.length; i++)
 					$("#addmenucategory").append("<option value='"+results[i].categoryid+"'>"+results[i].categoryname+"</option>");

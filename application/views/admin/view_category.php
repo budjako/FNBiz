@@ -11,7 +11,6 @@
                 $(".categorybody").html("");
                 for(var i=0; i<results.length; i++){
                     string="<tr id='"+results[i].categoryid+"'><td>"+results[i].categoryname+"</td>";
-                    console.log(results[i].categorydesc);
                     if(results[i].categorydesc==null) string+="<td></td>";
                     else string+="<td>"+results[i].categorydesc+"</td>";
                     string+="<td><input type='button' class='editbutton buttontab btn btn-default' value='Edit' /></td></tr>";

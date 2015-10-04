@@ -49,7 +49,6 @@
 	$(document).ready(function(){
 		$(document).on("click", "#expensesubmit", function(event){			// function to be executed when a company is approved
 			event.preventDefault();
-			// console.log("validateexpense"+validateexpense());
 			if(!validateexpense($('#expensename').val(), $('#expenseamount').val())) return;
 
 			var name = $("#expensename").val();
