@@ -36,7 +36,7 @@
 
 			var name = $("#expensename").val();
 			var amount = $("#expenseamount").val();
-			name=name.replace(" ", "_");
+			name=name.replace(" ", "_");		// ONLY FIRST OCCURRENCE
 			
 			$.ajax({
 				url: base_url+"index.php/cashier/expense/add_expense/"+name+"_"+amount,

@@ -65,7 +65,7 @@
 
 <div id="content">
 	<div id="contentheader"><h3>Transactions</h3></div>
-	<div id="transactionscontainer">
+	<div id="transactions" class="contentcontainer">
 		<div id="todaytransaction">
 		</div>
 		<div id="alltransactions">	<!-- pagination -->

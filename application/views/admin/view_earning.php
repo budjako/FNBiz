@@ -21,6 +21,6 @@
 
 <div id="content">
 	<div id="contentheader"><h3>Earnings</h3></div>
-	<div id="earnings"></div>
+	<div id="earnings" class="contentcontainer"></div>
 </div>
 <script src="<?php echo base_url() ?>assets/js/validate.js"></script>

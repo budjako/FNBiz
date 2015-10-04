@@ -50,11 +50,11 @@
 		$(document).on("click", "#expensesubmit", function(event){			// function to be executed when a company is approved
 			event.preventDefault();
 			// console.log("validateexpense"+validateexpense());
-			if(!validateexpense()) return;
+			if(!validateexpense($('#expensename').val(), $('#expenseamount').val())) return;
 
 			var name = $("#expensename").val();
 			var amount = $("#expenseamount").val();
-			name=name.replace(" ", "_");
+			name=name.split(' ').join('_');
 			$("#expensename").val("");
 			$("#expenseamount").val("");
 			
@@ -73,14 +73,25 @@
 
 <div id="content">
 	<div id="contentheader"><h3>Expenses</h3></div>
-	<div id="expensescontainer">
+	<div id="expenses" class="contentcontainer">
 		<div id="addexpense">
-			<form name="order" id="addexpense" class="form-horizontal">
-				<label>Expense Name</label>
-				<input type="text" id="expensename" name="expensename"></input>
-				<label>Amount</label>
-				<input type="number" id="expenseamount" name="amount" step="any"></input> 
-				<input class='buttonlogin col-sm-offset-2 btn btn-default' type='submit' id="expensesubmit" name='submit' value='Add Expense' />
+			<form name="order" id="addexpense" class="form-horizontal formcontainer">
+				<div>
+					<label class="col-sm-4 control-label">Expense Name</label>
+					<div class="col-sm-6">
+						<input class="form-control" type="text" id="expensename" name="expensename" onblur="validateexpensename(this.value)"></input><span class="expensenameerr"></span></br>
+					</div>
+				</div>
+				</br>
+				<div>
+					<label class="col-sm-4 control-label">Amount</label>
+					<div class="col-sm-6">
+						<input class="form-control" type="number" id="expenseamount" name="expenseamount" step="any" min="1" onblur="validateexpenseamount(this.value)"></input><span class="expenseamounterr"></span></br>
+					</div>
+				</div>
+				</br>
+				<label class="col-sm-4 control-label"></label>
+				<input class='buttontab btn btn-default' type='submit' id="expensesubmit" name='submit' value='Add Expense' />
 			</form>
 		</div>
 		<h4>Today's Expenses</h4>

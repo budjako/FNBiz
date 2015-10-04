@@ -58,4 +58,17 @@ class Menu extends CI_Controller{
 		$item=explode("_", $item);
 		$this->model_menu->availability($item[0], $item[1]);
 	}
+
+	public function add_menu(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
+		// var_dump($this->input->post());
+
+		$name=$this->input->post()['addmenuname'];
+		$category=$this->input->post()['addmenucategory'];
+		$price=$this->input->post()['addmenuprice'];
+
+		$this->model_menu->add_menu($name, $category, $price);
+		redirect("admin/menu", "refresh");
+	}
 }

@@ -1,156 +1,218 @@
-// spaces and enye!
+// GENERICS
 
-function validatelogin(){
-	if(validateloginusername() && validateloginpassword()) return true;
+function alpha(str){	// minimum of length 1
+	if(str.match(/^[a-zA-Z]+$/)) return true;
 	return false;
 }
 
-function validateloginusername(){
-	// alphanumeric and _ only
-	msg="";
-	document.getElementsByName("usernameerr")[0].innerHTML=msg;
-	str=login.username.value.trim();
-	if(str==""){
-		msg="Username is required.";
-	}
-	else if (!str.match(/^[a-zA-Z0-9_]{3,}$/)){
-		msg="Invalid Input: Only alphanumeric and underscore characters are allowed.";
-	}
-	if(msg=="") return true;
-	document.getElementsByName("usernameerr")[0].innerHTML=msg;
+function intfloat(str){
+	if(integer(str) || decimal(str)) return true;
+	return false;
+} 
+
+function integer(str){
+	if(str.match(/^(-)?[0-9]+$/)) return true;
 	return false;
 }
 
-function validateloginpassword(){
-	// alphanumeric and _ only
-	msg="";
-	document.getElementsByName("passworderr")[0].innerHTML=msg;
-	str=login.password.value.trim();
-	if(str==""){
-		msg="Password is required.";
-	}
-	else if(str.length<5){
-		msg="Invalid Input: Password length should be >= 5."
-	}
-	else if (!str.match(/^[a-zA-Z0-9_]{3,}$/)){
-		msg="Invalid Input: Only alphanumeric and underscore characters are allowed.";
-	}
-	if(msg=="") return true;
-	document.getElementsByName("passworderr")[0].innerHTML=msg;
+function decimal(str){
+	if(str.match(/^(-)?[0-9]*\.[0-9]*[1-9]+[0-9]*$/)) return true;
+	return false;
+}
+
+function alphaspace(str){	// minimum 1 alpha
+	if(str.match(/^[a-zA-Z]+[a-zA-Z\s]*$/)) return true;
+	return false;
+}
+
+function alphanum(str){	// minimum of length 1
+	if(str.match(/^[a-zA-Z0-9]+$/)) return true;
+	return false;
+}
+
+function alphanumuscore(str){	// minimum of length 1
+	if(str.match(/^[a-zA-Z0-9_]$/)) return true;
+	return false;
+}
+
+function alphanumuscorespace(str){	// minimum of length 1
+	if(str.match(/^[a-zA-Z0-9_\s]+$/)) return true;
+	return false;
+}
+
+// =================================================================================================================================
+
+// USER INFORMATION VALIDATION
+
+function validateaddacctinfo(){
+	if(validateusername(addaccount.username.value.trim()) && validatepassword(addaccount.password.value.trim()) && validatefname(addaccount.firstname.value.trim()) && validatelname(addaccount.lastname.value.trim())) return true;
+	return false;
+}
+
+function validateaddaccount(){
+	if(validateusername(login.username.value.trim()) && validatepassword(login.password.value.trim())) return true;
 	return false;
 }
 
 function validatesignup(){
-	if(validateusername() && validatepassword() && validatefirstname() && validatelastname()) return true;
+	if(validateusername(signup.username.value.trim()) && validatepassword(signup.password.value.trim()) && validatefirstname(signup.firstname.value.trim()) && validatelastname(signup.lastname.value.trim())) return true;
 	return false;
 }
 
-function validateusername(){
-	// alphanumeric and _ only
+function validateusername(str){
 	msg="";
-	document.getElementsByName("usernameerr")[0].innerHTML=msg;
-	str=signup.username.value.trim();
-	if(str==""){
-		msg="Username is required.";
-	}
-	else if (!str.match(/^[a-zA-Z0-9_]{3,}$/)){
-		msg="Invalid Input: Only alphanumeric and underscore characters are allowed.";
-	}
+	document.getElementsByClassName("unameerr")[0].innerHTML=msg;
+	if(str=="") msg="Username is required.";
+	else if(str.length<7) msg="Enter at least eight characters."
+	else if (!str.match(/^[a-zA-Z0-9_]{7,}$/)) msg="Only alphanumeric and underscore characters are allowed.";
 	if(msg=="") return true;
-	document.getElementsByName("usernameerr")[0].innerHTML=msg;
+	document.getElementsByClassName("unameerr")[0].innerHTML=msg;
 	return false;
 }
 
-function validatepassword(){
-	// alphanumeric and _ only
+function validatepassword(str){
 	msg="";
-	document.getElementsByName("passworderr")[0].innerHTML=msg;
-	str=signup.password.value.trim();
-	if(str==""){
-		msg="Password is required.";
-	}
-	else if(str.length<5){
-		msg="Invalid Input: Password length should be >= 5."
-	}
-	else if (!str.match(/^[a-zA-Z0-9_]{3,}$/)){
-		msg="Invalid Input: Only alphanumeric and underscore characters are allowed.";
-	}
+	document.getElementsByClassName("pworderr")[0].innerHTML=msg;
+	if(str=="") msg="Password is required.";
+	else if(str.length<8) msg="Enter at least eight characters.";
+	else if (!str.match(/^[a-zA-Z0-9_]{8,}$/)) msg="Only alphanumeric and underscore characters are allowed.";
 	if(msg=="") return true;
-	document.getElementsByName("passworderr")[0].innerHTML=msg;
+	document.getElementsByClassName("pworderr")[0].innerHTML=msg;
 	return false;
 }
 
-function validatefirstname(){
-	// alphanumeric and _ only
+function matchPassword(str1, str2){
+	document.getElementsByClassName("confpworderr")[0].innerHTML="";
+	if(validatepassword(str1)){
+		if(str1==str2) return true;
+		document.getElementsByClassName("confpworderr")[0].innerHTML="Passwords don't match";
+		return false;
+	}
+}
+
+function validatefname(str){
 	msg="";
-	document.getElementsByName("firstnameerr")[0].innerHTML=msg;
-	str=signup.firstname.value.trim();
-	if(str==""){
-		msg="First name is required.";
-	}
-	else if (!str.match(/^[a-zA-Z]{3,}$/)){
-		msg="Invalid Input: Only alpha characters are allowed.";
-	}
+	document.getElementsByClassName("fnameerr")[0].innerHTML=msg;
+	if(str=="") msg="Firstname is required.";
+	else if(str.length < 3) msg="Enter at least three characters."
+	else if (!str.match(/^[A-Za-zñÑ]{1}[A-Za-zñÑ\s]*\.?((\.\s[A-Za-zñÑ]{2}[A-Za-zñÑ\s]*\.?)|(\s[A-Za-zñÑ][A-Za-zñÑ]{1,2}\.)|(-[A-Za-zñÑ]{1}[A-Za-zñÑ\s]*))*$/)) msg="Invalid name.";
 	if(msg=="") return true;
-	document.getElementsByName("firstnameerr")[0].innerHTML=msg;
+	document.getElementsByClassName("fnameerr")[0].innerHTML=msg;
 	return false;
 }
 
-function validatelastname(){
-	// alphanumeric and _ only
+function validatelname(str){
 	msg="";
-	document.getElementsByName("lastnameerr")[0].innerHTML=msg;
-	str=signup.lastname.value.trim();
-	if(str==""){
-		msg="Last name is required.";
-	}
-	else if (!str.match(/^[a-zA-Z]{3,}$/)){
-		msg="Invalid Input: Only alpha characters are allowed.";
-	}
+	document.getElementsByClassName("lnameerr")[0].innerHTML=msg;
+	if(str=="") msg="Last Name is required.";
+	else if(str.length < 3) msg="Enter at least three characters."
+	else if (!str.match(/^([A-Za-zñÑ]){1}([A-Za-zñÑ]){1,}(\s([A-Za-zñÑ]){1,})*(\-([A-Za-zñÑ]){1,}){0,1}$/)) msg="Invalid name.";
 	if(msg=="") return true;
-	document.getElementsByName("lastnameerr")[0].innerHTML=msg;
+	document.getElementsByClassName("lnameerr")[0].innerHTML=msg;
 	return false;
 }
+
+// =================================================================================================================================
+
+// ORDER VALIDATION
 
 function validateorder(){
 	ctr=document.getElementsByClassName("itemcount").length;
-	// console.log(ctr);
-
+	
 	hasItem=0;
-
 	for(i=0; i<ctr; i++)
-		// console.log(document.getElementsByClassName("count")[i].value);
 		if(document.getElementsByClassName("itemcount")[i].value > 0) hasItem++;
 	
-
 	if(hasItem==0) return false;
 	return true;
 }
 
-function validateorder(){
-	ctr=document.getElementsByClassName("itemcount").length;
-	// console.log(ctr);
+// =================================================================================================================================
 
-	hasItem=0;
+// ADD MENU VALIDATION
 
-	for(i=0; i<ctr; i++)
-		// console.log(document.getElementsByClassName("count")[i].value);
-		if(document.getElementsByClassName("itemcount")[i].value > 0) hasItem++;
-	
-
-	if(hasItem==0) return false;
-	return true;
-}
-
-function validateexpense(){
-	if(validateexpensename() && validateexpenseamount()) return true;
+function validateaddmenu(){
+	if(validatemenuname(addmenu.addmenuname.value.trim()) && validatemenucategory(addmenu.addmenucategory.value.trim()) && validatemenuprice(addmenu.addmenuprice.value.trim())) return true;
 	return false;
 }
 
-function validateexpensename(){
-	return true;
+function validatemenuname(str){
+	msg="";
+	document.getElementsByClassName("addmenunameerr")[0].innerHTML=msg;
+	if(! alphaspace(str)) msg="Alphanumeric characters only.";
+	else if(name.length<3) msg="Input at least three characters.";
+	if(msg=="") return true;
+	document.getElementsByClassName("addmenunameerr")[0].innerHTML=msg;
+	return false;
 }
 
-function validateexpenseamount(){
-	return true;
+function validatemenucategory(str){
+	msg="";
+	document.getElementsByClassName("addmenucategoryerr")[0].innerHTML=msg;
+	if(! integer(str)) msg="Invalid chosen category.";
+	if(msg=="") return true;
+	document.getElementsByClassName("addmenucategoryerr")[0].innerHTML=msg;
+	return false;
+}
+
+function validatemenuprice(str){
+	msg="";
+	document.getElementsByClassName("addmenupriceerr")[0].innerHTML=msg;
+	if(! intfloat(str)) msg="Indicate price.";
+	if(msg=="") return true;
+	document.getElementsByClassName("addmenupriceerr")[0].innerHTML=msg;
+	return false;
+}
+
+// =================================================================================================================================
+
+// EXPENSE VALIDATION
+
+function validateexpense(name, amount){
+	if(validateexpensename(name) && validateexpenseamount(amount)) return true;
+	return false;
+}
+
+function validateexpensename(name){
+	msg="";
+	document.getElementsByClassName('expensenameerr')[0].innerHTML="";
+	if(name.length<5) msg="Input at least five characters.";
+	else if(!alphaspace(name)) msg="Alpha Characters only.";
+	if(msg=="") return true;
+	document.getElementsByClassName('expensenameerr')[0].innerHTML=msg;
+	return false;
+}
+
+function validateexpenseamount(amount){
+	msg="";
+	document.getElementsByClassName('expenseamounterr')[0].innerHTML="";
+	if(!intfloat(amount)) msg="Numeric Characters only.";
+	else if(amount<1) msg="Amount should be greater than 0.";
+	if(msg=="") return true;
+	document.getElementsByClassName('expenseamounterr')[0].innerHTML=msg;
+	return false;
+}
+
+// =================================================================================================================================
+
+// CATEGORY VALIDATION
+
+function validateaddcategory(name, nameclassname, desc, descclassname){
+	if(validatecatname(name, nameclassname) && validatecatdesc(desc, descclassname)) return true;
+	return false;
+}
+
+function validateeditcategory(id, name, nameclassname, desc, descclassname){
+	if(integer(id) && validatecatname(name, nameclassname) && validatecatname(desc, descclassname)) return true;
+	return false;
+}
+
+function validatecatname(str, classname){
+	msg="";
+	document.getElementsByClassName(classname)[0].innerHTML="";
+	if(str.length<5) msg="Input at least five characters.";
+	else if(!alphaspace(str)) msg="Alpha Characters only.";
+	if(msg=="") return true;
+	document.getElementsByClassName(classname)[0].innerHTML=msg;
+	return false;
 }

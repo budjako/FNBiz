@@ -22,9 +22,9 @@
 										if(results[i].available == 0) string+=" disabled='disabled'";	// unavailable
 										string+="></input> \
 										<input type='hidden' class='itemid' value="+results[i].itemid+"></br> \
-										<input type='checkbox' class='available'";
+										<input type='checkbox' class='available' id='available'";
 										if(results[i].available == 1) string+=" checked='checked'";		// available
-										string+=">Available</input> \
+										string+="><label for='available'>Available</label></input> \
 									</div> \
 								</div>";
 					$('#menulist').append(string);
@@ -43,9 +43,10 @@
 			type:'POST',
 
 			success: function(result){
+				console.log(result);
 				var results=JSON.parse(result);
 				for(var i=0; i<results.length; i++)
-					$("#addmenucategory").append("<option value='"+results[i].categoryname+"'>"+results[i].categoryname+"</option>");
+					$("#addmenucategory").append("<option value='"+results[i].categoryid+"'>"+results[i].categoryname+"</option>");
 				$("#addmenucategory").append("<option id='newcategory' value='newcategory'>Add a new category...</option>");
 			}
 		})
@@ -91,12 +92,6 @@
 			});
 		})
 
-		$(document).on("click", "#addmenusubmit", function(event){
-			if(!validateaddmenu()) return false;
-			
-
-		})
-
 		function getOrderString(){
 			string="";
 			for(i=0; i<$(".itemid").length; i++){
@@ -116,24 +111,47 @@
 
 <div id="content">
 	<div id="contentheader"><h3>Menu</h3></div>
-	<div id="menu">
+	<div id="menu" class="contentcontainer">
 		<div id="addmenucontainer">
 			<h4>Add Menu</h4>
-			<div id="addmenu">
-				<form name="order" id="addmenu" class="form-horizontal">
-					<label>Item Name</label>
-					<input type="text" id="addmenuname" name="addmenuname"></input>
-					<label>Item Category</label>
-					<select id="addmenucategory" name="addmenucategory"></select>
-					<label>Price</label>
-					<input type="number" id="addmenuprice" name="price" step="any"></input> 
-					<input class='buttonlogin col-sm-offset-2 btn btn-default' type='submit' id="addmenusubmit" name='submit' value='Add Item in Menu' />
+			<div id="addmenucontainer">
+				<?php 
+					echo validation_errors();						// show errors on search values
+					$attrib=array('name' => 'order', 'id' => 'addmenu', 'class' => 'form-horizontal formcontainer');
+					echo form_open('admin/menu/add_menu', $attrib);			
+					if(isset($msg)){
+						echo $msg;
+					}
+				?>
+				<div>
+					<label class="col-sm-4 control-label">Item Name</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" id="addmenuname" name="addmenuname" onblur="validatemenuname(this.value)"></input><span class="addmenunameerr"></span></br>
+					</div>
+				</div>
+				</br>
+				<div>
+					<label class="col-sm-4 control-label">Item Category</label>
+					<div class="col-sm-6">
+						<select class="form-control" id="addmenucategory" name="addmenucategory"  onblur="validatemenucategory(this.value)"></select><span class="addmenucategoryerr"></span></br>
+					</div>
+				</div>
+				</br>
+				<div>
+					<label class="col-sm-4 control-label">Price</label>
+					<div class="col-sm-6">
+						<input type="number" class="form-control" id="addmenuprice" name="addmenuprice" step="any" onblur="validatemenuprice(this.value)"></input><span class="addmenupriceerr"></span></br>
+					</div>
+				</div>
+				</br>
+				<label class="col-sm-4 control-label"></label>
+				<input class='buttontab btn btn-default' type='submit' id="addmenusubmit" name='submit' value='Add Item in Menu' />
 				</form>
 			</div>
 			<div id="addmenulist"></div>
 		</div>
 		<div id="menucontainer">
-			<h4>Full Menu List</h4>
+			<h4>Menu List</h4>
 			<form name="order" id="menulist" class="form-horizontal"></form>
 		</div>
 	</div>

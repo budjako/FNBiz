@@ -50,9 +50,14 @@
 		}
 
 		public function get_categories(){
-			$sql="SELECT categoryname from category";
+			$sql="SELECT categoryid, categoryname from category";
 			$sql=$this->db->query($sql);
 			return $sql->result_array();
+		}
+
+		public function add_menu($name, $category, $price){
+			$sql="INSERT INTO item (itemname, itemcategory, itemprice) VALUES ('".$name."', '".$category."', ".$price.")";
+			$this->db->query($sql);
 		}
 
 	}
