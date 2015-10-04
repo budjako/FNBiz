@@ -28,14 +28,13 @@
                 if(results[i].categoryid==idattrib) break;
             }
             $("#editcategory").html("<h4>Edit Category</h4>");
-            string="<input type='hidden' id='catidedit' name='catidedit' value="+results[i].categoryid+"></input>";
-            string+="<label class='col-sm-6 control-label' for='catnameedit'>Category Name</label>";
-            string+="<div class='col-sm-6'><input class='form-control' type='text' id='catnameedit' name='catnameedit' value='"+results[i].categoryname+"' onblur='validatecatname(this.value, 'editcatnameerr')'></input><span class='editcatnameerr'></span></br>";
-            string+="</div></br><label class='col-sm-6 control-label' for='catdescedit'>Category Description</label><div class='col-sm-6'>";
+            string="<input type='hidden' id='catidedit' name='catidedit' value="+results[i].categoryid+"></input><label class='col-sm-4 control-label' for='catnameedit'>Category Name</label>";
+            string+="<div class='col-sm-8'><input class='form-control' type='text' id='catnameedit' name='catnameedit' value='"+results[i].categoryname+"' onblur='validatecatname(this.value, \"editcatnameerr\")'></input><span class=\"editcatnameerr\"></span></br>";
+            string+="</div></br><label class='col-sm-4 control-label' for='catdescedit'>Category Description</label><div class='col-sm-8'>";
 
-            if(results[i].categorydesc==null) string+="<input class='form-control' type='text' id='catdescedit' name='catdescedit' onblur='validatecatname(this.value, 'editcatdescerr')'></input><span class='editcatdescerr'></span></br>";
-            else string+="<input class='form-control' type='text' id='catdescedit' name='catdescedit' value='"+results[i].categorydesc+"' onblur='validatecatname(this.value, 'editcatdescerr')'></input><span class='editcatdescerr'></span></br>";
-            string+="</div></br><label class='col-sm-6 control-label'></label><input class='buttontab btn btn-default' type='submit' id='categorysubmit' name='submit' value='Edit Category' />";
+            if(results[i].categorydesc==null) string+="<input class='form-control' type='text' id='catdescedit' name='catdescedit' onblur='validatecatname(this.value, \"editcatdescerr\")'></input><span class=\"editcatdescerr\"></span></br>";
+            else string+="<input class='form-control' type='text' id='catdescedit' name='catdescedit' value='"+results[i].categorydesc+"' onblur='validatecatname(this.value, \"editcatdescerr\")'></input><span class=\"editcatdescerr\"></span></br>";
+            string+="</div></br><label class='col-sm-4 control-label'></label><input class='buttontab btn btn-default' type='submit' id='categorysubmit' name='submit' value='Edit Category' />";
             $("#editcategory").append(string);
         })
     })
@@ -51,17 +50,17 @@
             echo form_open('admin/category/add_category', $attrib);         
             if(isset($msg)) echo $msg; 
         ?> 
-            <label class="col-sm-6 control-label" for="catnameadd">Category Name</label>
-            <div class="col-sm-6">
+            <label class="col-sm-4 control-label" for="catnameadd">Category Name</label>
+            <div class="col-sm-8">
                 <input class="form-control" type="text" id="catnameadd" name="catnameadd" onblur="validatecatname(this.value, 'addcatnameerr')"></input><span class="addcatnameerr"></span></br>
             </div>
             </br>
-            <label class="col-sm-6 control-label" for="catdescadd">Category Description</label>
-            <div class="col-sm-6">
+            <label class="col-sm-4 control-label" for="catdescadd">Category Description</label>
+            <div class="col-sm-8">
                 <input class="form-control" type="text" id="catdescadd" name="catdescadd" onblur="validatecatname(this.value, 'addcatdescerr')"></input><span class="addcatdescerr"></span></br>
             </div>
             </br>
-            <label class="col-sm-6 control-label"></label>
+            <label class="col-sm-4 control-label"></label>
             <input class='buttontab btn btn-default' type='submit' id="addcategorysubmit" name='submit' value='Add Category' />
         </form>
 

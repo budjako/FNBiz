@@ -84,8 +84,11 @@ function validatepassword(str){
 function matchPassword(str1, str2){
 	document.getElementsByClassName("confpworderr")[0].innerHTML="";
 	if(validatepassword(str1)){
-		if(str1==str2) return true;
-		document.getElementsByClassName("confpworderr")[0].innerHTML="Passwords don't match";
+		msg="";
+		if(str2=="")msg="Confirm password required.";
+		else if(str1!=str2) msg="Passwords don't match";
+		if(msg=="") return true;
+		document.getElementsByClassName("confpworderr")[0].innerHTML=msg;
 		return false;
 	}
 }
@@ -93,7 +96,7 @@ function matchPassword(str1, str2){
 function validatefname(str){
 	msg="";
 	document.getElementsByClassName("fnameerr")[0].innerHTML=msg;
-	if(str=="") msg="Firstname is required.";
+	if(str=="") msg="First name is required.";
 	else if(str.length < 3) msg="Enter at least three characters."
 	else if (!str.match(/^[A-Za-zñÑ]{1}[A-Za-zñÑ\s]*\.?((\.\s[A-Za-zñÑ]{2}[A-Za-zñÑ\s]*\.?)|(\s[A-Za-zñÑ][A-Za-zñÑ]{1,2}\.)|(-[A-Za-zñÑ]{1}[A-Za-zñÑ\s]*))*$/)) msg="Invalid name.";
 	if(msg=="") return true;
@@ -104,7 +107,7 @@ function validatefname(str){
 function validatelname(str){
 	msg="";
 	document.getElementsByClassName("lnameerr")[0].innerHTML=msg;
-	if(str=="") msg="Last Name is required.";
+	if(str=="") msg="Last name is required.";
 	else if(str.length < 3) msg="Enter at least three characters."
 	else if (!str.match(/^([A-Za-zñÑ]){1}([A-Za-zñÑ]){1,}(\s([A-Za-zñÑ]){1,})*(\-([A-Za-zñÑ]){1,}){0,1}$/)) msg="Invalid name.";
 	if(msg=="") return true;
@@ -137,10 +140,11 @@ function validateaddmenu(){
 }
 
 function validatemenuname(str){
+	console.log(str);
 	msg="";
 	document.getElementsByClassName("addmenunameerr")[0].innerHTML=msg;
 	if(! alphaspace(str)) msg="Alphanumeric characters only.";
-	else if(name.length<3) msg="Input at least three characters.";
+	else if(str.length<3) msg="Input at least three characters.";
 	if(msg=="") return true;
 	document.getElementsByClassName("addmenunameerr")[0].innerHTML=msg;
 	return false;

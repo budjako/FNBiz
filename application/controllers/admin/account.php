@@ -32,6 +32,13 @@ class Account extends CI_Controller{
 		
 	}
 
+	public function archive($username){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
+		$this->model_account->archive($username);
+		
+	}
+
 	public function add_user(){
 		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
 		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');

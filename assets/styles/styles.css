@@ -24,14 +24,12 @@
 
 .buttontab{
 	margin-left: 15px;
-	/*width: */
 }
 
 .formcontainer{
 	padding-top: 15px;
 	padding-bottom: 15px;
-	/*border: 1px solid #eee;*/
-	width:40%;
+	width:60%;
 }
 
 #heading{

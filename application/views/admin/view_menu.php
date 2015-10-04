@@ -116,7 +116,7 @@
 			<div id="addmenucontainer">
 				<?php 
 					echo validation_errors();						// show errors on search values
-					$attrib=array('name' => 'order', 'id' => 'addmenu', 'class' => 'form-horizontal formcontainer');
+					$attrib=array('name' => 'order', 'id' => 'addmenu', 'class' => 'form-horizontal formcontainer', 'onsubmit' => 'return validateaddmenu()');
 					echo form_open('admin/menu/add_menu', $attrib);			
 					if(isset($msg)){
 						echo $msg;
@@ -124,21 +124,21 @@
 				?>
 				<div>
 					<label class="col-sm-4 control-label">Item Name</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="text" class="form-control" id="addmenuname" name="addmenuname" onblur="validatemenuname(this.value)"></input><span class="addmenunameerr"></span></br>
 					</div>
 				</div>
 				</br>
 				<div>
 					<label class="col-sm-4 control-label">Item Category</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<select class="form-control" id="addmenucategory" name="addmenucategory"  onblur="validatemenucategory(this.value)"></select><span class="addmenucategoryerr"></span></br>
 					</div>
 				</div>
 				</br>
 				<div>
 					<label class="col-sm-4 control-label">Price</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input type="number" class="form-control" id="addmenuprice" name="addmenuprice" step="any" onblur="validatemenuprice(this.value)"></input><span class="addmenupriceerr"></span></br>
 					</div>
 				</div>

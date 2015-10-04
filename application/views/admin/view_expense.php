@@ -77,14 +77,14 @@
 			<form name="order" id="addexpense" class="form-horizontal formcontainer">
 				<div>
 					<label class="col-sm-4 control-label">Expense Name</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input class="form-control" type="text" id="expensename" name="expensename" onblur="validateexpensename(this.value)"></input><span class="expensenameerr"></span></br>
 					</div>
 				</div>
 				</br>
 				<div>
 					<label class="col-sm-4 control-label">Amount</label>
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 						<input class="form-control" type="number" id="expenseamount" name="expenseamount" step="any" min="1" onblur="validateexpenseamount(this.value)"></input><span class="expenseamounterr"></span></br>
 					</div>
 				</div>

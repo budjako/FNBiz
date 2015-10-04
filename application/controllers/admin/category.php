@@ -35,9 +35,6 @@ class Category extends CI_Controller{
 	public function add_category(){
 		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
 		if(! $this->session->userdata('logged_in')['is_admin']) redirect('cashier/menu', 'refresh');
-		// validate
-		// $this->model_category->edit_category($this->input->post());
-		// redirect('admin/category', 'refresh');
 		var_dump($this->input->post());
 
 		$this->load->library('form_validation');
@@ -48,8 +45,7 @@ class Category extends CI_Controller{
 		$data['catnameadd'] = $this->input->post('catnameadd');
 		$data['catdescadd'] = $this->input->post('catdescadd');
 
-		if (! $this->form_validation->run())
-		{
+		if (! $this->form_validation->run()){
 			$data['msg'] = validation_errors();
 			$this->load->view("header", $data); 							//displays the header
 			$this->load->view("admin/navigation");

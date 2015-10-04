@@ -12,7 +12,7 @@
 		}
 
 		public function edit_category($values){
-			$sql="UPDATE category SET categoryname='".$values['categoryname']."', categorydesc='".$values['categorydesc']."' where categoryid=".$values['categoryid'];
+			$sql="UPDATE category SET categoryname='".$values['catnameadd']."', categorydesc='".$values['catdescadd']."' where categoryid=".$values['categoryid'];
 			$this->db->query($sql);
 		}
 
