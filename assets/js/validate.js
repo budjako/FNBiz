@@ -42,11 +42,34 @@ function alphanumuscorespace(str){	// minimum of length 1
 
 // =================================================================================================================================
 
+// USER LOGIN VALIDATION
+
+function validatelogin(){
+	if(validateusername(login.username.value.trim()) && validatepassword()) return true;
+	return false;
+}
+
+// =================================================================================================================================
+
 // USER INFORMATION VALIDATION
 
 function validateaddacctinfo(){
 	if(validateusername(addaccount.username.value.trim()) && validatepassword(addaccount.password.value.trim()) && validatefname(addaccount.firstname.value.trim()) && validatelname(addaccount.lastname.value.trim())) return true;
 	return false;
+}
+
+function validateeditacctinfo(){
+	username_available(function(available){
+		if(available=="yes"){
+			console.log("not available");
+			return false;
+		}
+		else{
+			if(validateusername(editinfo.username.value.trim()) && validatefname(editinfo.firstname.value.trim()) && validatelname(editinfo.lastname.value.trim())) return true;
+			return false;
+		}
+	})
+	
 }
 
 function validateaddaccount(){
@@ -74,8 +97,8 @@ function validatepassword(str){
 	msg="";
 	document.getElementsByClassName("pworderr")[0].innerHTML=msg;
 	if(str=="") msg="Password is required.";
-	else if(str.length<8) msg="Enter at least eight characters.";
-	else if (!str.match(/^[a-zA-Z0-9_]{8,}$/)) msg="Only alphanumeric and underscore characters are allowed.";
+	else if(str.length<7) msg="Enter at least seven characters.";
+	else if (!str.match(/^[a-zA-Z0-9_]{7,}$/)) msg="Only alphanumeric and underscore characters are allowed.";
 	if(msg=="") return true;
 	document.getElementsByClassName("pworderr")[0].innerHTML=msg;
 	return false;

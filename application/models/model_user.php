@@ -19,9 +19,29 @@
 			return false;
 		}
 
-		public function exists($username, $password){
-			$query=$this->db->get_where('user', array('username'=>$username, 'password'=>$password));
+		public function exists($username){
+			$query=$this->db->get_where('user', array('username'=>$username));
 			if($query->num_rows()==1) return true;
+			return false;
+		}
+
+		public function get_user_info($username){
+			$sql="SELECT username, firstname, lastname from user where username='".$username."'";
+			$sql=$this->db->query($sql);
+			return $sql->result_array()[0];
+		}
+
+		public function edit_info($data){
+			$sql="UPDATE user SET username='".$data['username']."', firstname='".$data['firstname']."', lastname='".$data['lastname']."' where username='".$this->session->userdata['logged_in']['username']."'";
+			$this->session->userdata['logged_in']['username']=$data['username'];
+			$this->db->query($sql);
+		}
+
+		public function match_password($username, $password){
+			$sql="SELECT password from user where username='".$username."'";
+			$sql=$this->db->query($sql);
+
+			if($sql->result_array()[0]['password'] == $password) return true;
 			return false;
 		}
 	}

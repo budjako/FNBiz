@@ -9,8 +9,6 @@
 
 			success: function(results){
 				var results=JSON.parse(results);
-				console.log(results);
-				// $('#earnings').append(results);
 				$('.todaysales').html(results['sales']);
 				$('.todayexpenses').html(results['expenses']);
 				$('.todayearning').html(results['earning']);
@@ -25,11 +23,9 @@
 
 			success: function(results){
 				var results=JSON.parse(results);
-				console.log(results);
 				$('.allsales').html(results['sales']);
 				$('.allexpenses').html(results['expenses']);
 				$('.allearning').html(results['earning']);
-				// $('#earnings').append(results);
 			}
 		});
 	}

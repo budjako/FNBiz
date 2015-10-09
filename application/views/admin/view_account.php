@@ -49,7 +49,6 @@
 
 			$(document).on("click", ".archive", function(event){
 				source=$(this);
-				console.log(source);
 				// console.log($(this).parent().parent().attr("id"));			// id of table row
 				username=$(this).parent().parent().attr("id");
 
@@ -74,7 +73,7 @@
 		<h4>Add Account</h4>
 		<div id="addaccountcontainer">
 			<?php 
-				echo validation_errors();						// show errors on search values
+				// echo validation_errors();						// show errors on search values
 				$attrib=array('name' => 'addaccount', 'id' => 'addaccount', 'class' => 'formcontainer form-horizontal', 'onsubmit' => "return validateaddacctinfo() && matchPassword($('#password').val(), $('#confirmpassword').val())" );
 				echo form_open('admin/account/add_user', $attrib);			
 				if(isset($msg)){

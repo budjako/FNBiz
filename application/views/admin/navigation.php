@@ -10,16 +10,8 @@
 			<li><a href="<?php echo base_url(); ?>index.php/admin/earning">Earnings</a></li>		<!-- Compute today's earnings -->
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li class="dropdown">
-				<a id="rightitem" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-					<?php echo $this->session->userdata('logged_in')['username']; ?>				<!-- View and edit personal info -->
-					<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#">Profile</a></li>
-					<li><a href="<?php echo base_url(); ?>index.php/home/logout">Logout</a></li>
-				</ul>
-			</li>
+			<li><a href="<?php echo base_url(); ?>index.php/account"><?php echo $this->session->userdata('logged_in')['username']; ?> </a></li>
+			<li><a href="<?php echo base_url(); ?>index.php/home/logout">Logout</a></li>
 		</ul>
 	</div>
 </nav>

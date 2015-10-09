@@ -42,7 +42,7 @@ class Home extends CI_Controller{
 			$this->load->view("footer");
 		}
 		else{
-			if($this->model_user->exists($this->input->post('username'), $this->input->post('password'))){
+			if($this->model_user->exists($this->input->post('username')) && $this->model_user->match_password($this->input->post('username'), $this->input->post('password'))){
 				$info['username'] = $this->input->post('username');
 				$info['is_admin'] = $this->model_user->is_admin($info['username']);
 				$this->session->set_userdata('logged_in', $info);
