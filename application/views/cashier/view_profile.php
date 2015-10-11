@@ -46,7 +46,7 @@
 
 					success: function(result){
 						if(result=="match"){
-							string="<form name='editinfo' id='editinfo' class='form-horizontal formcontainer'> \
+							string="<form action='"+base_url+"index.php/account/update_password/' method='post' name='editinfo' id='editinfo' class='form-horizontal formcontainer' onsubmit='return validateupdatepassword()'> \
 								<div> \
 									<label class='col-sm-4 control-label'>New Password</label> \
 									<div class='col-sm-8'> \
@@ -64,7 +64,7 @@
 								<label class='col-sm-4 control-label'></label> \
 								<input class='buttontab btn btn-default' type='submit' id='newpasssubmit' name='submit' value='Update Password' /> \
 							</form>";
-							$('#editpass').html(string);
+							$('#formholder').html(string);
 						}
 						else{
 							$('.pworderr').html("Invalid password.");
@@ -116,14 +116,16 @@
 		</div>
 		<div id="editpassword">
 			<h4>Update Password</h4>
-			<form name="editpass" id="editpass" class="form-horizontal formcontainer">
-				<div>
-					<label class="col-sm-4 control-label">Old Password</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="password" id="oldpass" name="oldpass"></br><span class="pworderr"></span>
+			<div id="formholder">
+				<form name="editpass" id="editpass" class="form-horizontal formcontainer">
+					<div>
+						<label class="col-sm-4 control-label">Old Password</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="password" id="oldpass" name="oldpass"></br><span class="pworderr"></span>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>

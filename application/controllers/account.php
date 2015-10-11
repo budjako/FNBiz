@@ -53,6 +53,27 @@ class Account extends CI_Controller{
 		redirect("account", "refresh");
 	}
 
+	function update_password(){
+		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('password', 'Password', 'sha1|trim|required|callback_password_regex');
+		$this->form_validation->set_message('password_regex', 'Invalid password.');
+
+		if (! $this->form_validation->run()){
+			$data['msg'] = validation_errors();
+			$this->load->view("header", $data); 							//displays the header
+			if(! $this->session->userdata('logged_in')['is_admin'])			// not an admin
+				$this->load->view("cashier/navigation");
+			else															// admin
+				$this->load->view("admin/navigation");
+			$this->load->view("account", $data); 				//displays the home page
+			$this->load->view("footer");
+		}
+		$data['password'] = $this->input->post('password');
+		$this->model_user->update_password($this->session->userdata('logged_in')['username'], $data['password']);
+		redirect("account", "refresh");
+	}
+
 	function verify_password(){
 		if(! $this->session->userdata('logged_in')) redirect('home', 'refresh');
 		$this->load->library('form_validation');
@@ -69,7 +90,7 @@ class Account extends CI_Controller{
 		}
 		$data['password'] = $this->input->post('password');
 		// var_dump($this->input->post());
-		if($this->match($data['password'])) echo "match";
+		if($this->match($data['password'])) echo "match";					// uses the method match to check if the password
 		else echo "mismatch";
 	}
 

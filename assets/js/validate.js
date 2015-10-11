@@ -51,6 +51,15 @@ function validatelogin(){
 
 // =================================================================================================================================
 
+// UPDATE PASSWORD VALIDATION
+
+function validateupdatepassword(){
+	if(validatepassword($("#password")[0].value) && matchPassword($("#password")[0].value, $("#confirmpassword")[0].value)) return true;
+	return false;
+}
+
+// =================================================================================================================================
+
 // USER INFORMATION VALIDATION
 
 function validateaddacctinfo(){

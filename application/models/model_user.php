@@ -44,6 +44,11 @@
 			if($sql->result_array()[0]['password'] == $password) return true;
 			return false;
 		}
+
+		public function update_password($username, $password){
+			$sql="UPDATE user SET password='".$password."' where username='".$username."'";
+			$this->db->query($sql);
+		}
 	}
 
 ?>
