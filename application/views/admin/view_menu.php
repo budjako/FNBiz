@@ -22,9 +22,9 @@
 										if(results[i].available == 0) string+=" disabled='disabled'";	// unavailable
 										string+="></input> \
 										<input type='hidden' class='itemid' value="+results[i].itemid+"></br> \
-										<input type='checkbox' class='available' id='available'";
+										<input type='checkbox' class='available chkbox' id='available'";
 										if(results[i].available == 1) string+=" checked='checked'";		// available
-										string+="><label>Available</label></input> \
+										string+="><label class='available-label'>Available</label></input> \
 									</div> \
 								</div>";
 					$('#menulist').append(string);
